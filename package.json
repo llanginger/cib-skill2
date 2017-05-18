@@ -1,0 +1,50 @@
+{
+    "name": "cibSkill2",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start:ios": "yarn run build && concurrently -r 'yarn run watch' 'react-native run-ios'",
+        "watch": "yarn run build --w",
+        "tsc": "tsc",
+        "lint": "tslint src/**/*.ts",
+        "clean": "rimraf build",
+        "build": "yarn run clean && copyfiles -u 1 src/elements/** build/ && yarn run tsc -w",
+        "test": "jest --coverage"
+    },
+    "dependencies": {
+        "@types/jest": "^19.2.3",
+        "@types/react": "^15.0.24",
+        "@types/react-native": "^0.44.1",
+        "@types/react-redux": "^4.4.40",
+        "react": "16.0.0-alpha.6",
+        "react-native": "0.44.0",
+        "react-native-interactable": "^0.0.9",
+        "react-redux": "^5.0.4",
+        "redux": "^3.6.0",
+        "redux-logger": "^3.0.6"
+    },
+    "devDependencies": {
+        "babel-jest": "20.0.1",
+        "babel-preset-react-native": "1.9.2",
+        "concurrently": "^3.4.0",
+        "jest": "20.0.1",
+        "react-test-renderer": "16.0.0-alpha.6",
+        "rimraf": "^2.6.1",
+        "tslint": "^5.2.0",
+        "typescript": "^2.3.2"
+    },
+    "jest": {
+        "preset": "react-native",
+        "testRegex": "build/.+\\.(test|spec).js$",
+        "coverageDirectory": "coverage",
+        "coverageReporters": [
+            "text-summary",
+            "html"
+        ],
+        "collectCoverageFrom": [
+            "build/**/*.js",
+            "!build/**/*.spec.js",
+            "!build/**/*.index.js"
+        ]
+    }
+}
